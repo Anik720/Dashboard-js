@@ -1,13 +1,13 @@
 import React, { useCallback, useRef, useState } from "react";
-import { Typography } from "@mui/material";
-import LoopIcon from "@mui/icons-material/Loop";
-import FileDownloadIcon from "@mui/icons-material/FileDownload";
-import { Divider } from "@mui/material";
-import HelpIcon from "@mui/icons-material/Help";
-import ShareIcon from "@mui/icons-material/Share";
-import PrintIcon from "@mui/icons-material/Print";
-import SignalCellularAltIcon from "@mui/icons-material/SignalCellularAlt";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { Divider, Space } from "antd";
+import {
+  QuestionCircleOutlined,
+  ReloadOutlined,
+  DownloadOutlined,
+  ShareAltOutlined,
+  PrinterOutlined,
+  DownOutlined,
+} from "@ant-design/icons";
 
 import domtoimage from "dom-to-image";
 import ApexBarChart from "./ApexBarChart";
@@ -147,7 +147,7 @@ const SalesAndExpenses = () => {
       {/* section 1 */}
       <div className="flex justify-between items-center my-10 flex-wrap m-5">
         {/* left side */}
-        <div className="flex justify-center gap-[5px]">
+        <div className="flex justify-center items-center gap-[5px]">
           <p
             variant="h6"
             component="h6"
@@ -161,7 +161,18 @@ const SalesAndExpenses = () => {
             style={{ borderRadius: "50%", width: "full", cursor: "pointer" }}
             // onClick={handleShowHelpPopup}
           >
-            <HelpIcon />
+            <div
+              style={{
+                background: "#fff",
+                padding: "3px",
+                display: "inline-block",
+                borderRadius: "50%",
+              }}
+            >
+              <QuestionCircleOutlined
+                style={{ color: "black", fontSize: "22px", background: "#fff" }}
+              />
+            </div>
             <span class="tooltiptext">Here's some amazing content.</span>
           </div>
         </div>
@@ -176,9 +187,22 @@ const SalesAndExpenses = () => {
               Data refreshed at jul 18,2023 04:06 PM
             </p>
           </div>
-          <div className="h-full border-r border-gray-500 mx-2"></div>
-          <div onClick={handleRefresh} style={{ cursor: "pointer" }}>
-            <LoopIcon />
+
+          {/* <Divider type="vertical" /> */}
+          <Divider
+            type="vertical"
+            style={{
+              borderColor: "gray", // Change the color to gray
+              borderWidth: "1px", // Increase the border width for a thicker line
+              height: "30px", // Increase the height of the divider
+            }}
+          />
+          <div
+            onClick={handleRefresh}
+            className="flex justify-center items-center gap-5 mr-[10px]"
+            style={{ cursor: "pointer", fontSize: "20px" }}
+          >
+            <ReloadOutlined />
           </div>
           <div
             className="flex gap-[5px] border border-indigo-600 px-5 text-sm justify-center items-center "
@@ -198,32 +222,24 @@ const SalesAndExpenses = () => {
             style={{ borderRadius: "5px" }}
           >
             <div>
-              {/* <div
-                id="chart-container"
-                // onClick={handleDownload}
-              >
-                <div ref={chartRef}>
-                  <MyChart />
-                </div>
-
-                <button onClick={handleDownload}>Download Chart</button>
-              </div> */}
-
               <p
                 className="text-indigo-600 text-sm"
                 // onClick={handleDownload}
                 style={{ cursor: "pointer" }}
               >
-                <FileDownloadIcon onClick={handleDownload} />
+                <DownloadOutlined
+                  onClick={handleDownload}
+                  style={{ fontSize: "23px" }}
+                />
               </p>
             </div>
           </div>
           <div
-            className="flex gap-[5px] border border-gray-600 px-5"
+            className="flex items-center justify-center gap-[5px] border border-gray-600 px-5"
             style={{ borderRadius: "5px" }}
           >
             <p className="text-gray-600 text-sm">
-              <ShareIcon />
+              <ShareAltOutlined style={{ fontSize: "23px" }} />
             </p>
             <p className="text-gray-600 text-sm">Email</p>
           </div>
@@ -232,18 +248,21 @@ const SalesAndExpenses = () => {
             style={{ borderRadius: "5px" }}
           >
             <p className="text-gray-600 text-sm">
-              <PrintIcon />
+              {/* <PrintIcon /> */}
+              <PrinterOutlined style={{ fontSize: "23px" }} s />
             </p>
             <p className="text-gray-600 text-sm">Print</p>
           </div>
           <div
-            className="flex gap-[5px] bg bg-[#00a1e4] text-white px-5"
+            className="flex items-center justify-center gap-[5px] bg bg-[#00a1e4] text-white px-5"
             style={{ borderRadius: "5px" }}
           >
             <p className="text-white-600  text-sm">
-              <SignalCellularAltIcon />
+              {/* <SignalCellularAltIcon /> */}
             </p>
-            <p className="text-white-600 text-sm">Generate Report</p>
+            <p className="text-white-600 text-sm text-center py-[4px]">
+              Generate Report
+            </p>
           </div>
           <div
             className="flex gap-[5px] bg bg-green-600 text-white py-[3px] px-[10px] mr-[-4px]"
@@ -252,11 +271,11 @@ const SalesAndExpenses = () => {
             <p className="text-white-600 text-sm">Save</p>
           </div>
           <div
-            className="flex gap-[5px] bg bg-green-600 text-white py-[1px] px-[5px]"
+            className="flex items-center justify-center gap-[5px] bg bg-green-600 text-white py-[3px] px-[5px]"
             style={{ borderRadius: "5px" }}
           >
             <p className="text-white-600 text-sm">
-              <ArrowDropDownIcon />
+              <DownOutlined style={{ fontSize: "15px" }} />
             </p>
           </div>
         </div>
@@ -286,9 +305,9 @@ const SalesAndExpenses = () => {
           </div>
         </div>
 
-        <Divider />
+        <Divider className="border border-gray-300 " />
 
-        <div className="flex justify-around  items-center gap-5 h-[100px] overflow-auto">
+        <div className="flex justify-around  items-center  h-[100px] overflow-auto">
           <div>
             <p
               className="text-lg text-cyan-600 font-bold"
@@ -304,7 +323,13 @@ const SalesAndExpenses = () => {
             </p>
           </div>
 
-          <Divider orientation="vertical" flexItem />
+          <Divider
+            type="vertical"
+            className="border border-gray-300 mb-10"
+            style={{
+              height: "100%",
+            }}
+          />
           <div>
             <p
               className="text-xl text-orange-500 font-bold"
@@ -363,7 +388,18 @@ const SalesAndExpenses = () => {
             style={{ borderRadius: "50%", width: "full", cursor: "pointer" }}
             // onClick={handleShowHelpPopup}
           >
-            <HelpIcon />
+            <div
+              style={{
+                background: "#fff",
+                padding: "3px",
+                display: "inline-block",
+                borderRadius: "50%",
+              }}
+            >
+              <QuestionCircleOutlined
+                style={{ color: "black", fontSize: "22px", background: "#fff" }}
+              />
+            </div>
             <span class="tooltiptext">Here's some amazing content.</span>
           </div>
 
@@ -378,7 +414,7 @@ const SalesAndExpenses = () => {
               </div>
             </div>
 
-            <Divider orientation="vertical" flexItem className="ml-10" />
+            {/* <Divider orientation="vertical" flexItem className="ml-10" /> */}
           </div>
 
           <div className="flex flex-col justify-center items-end text-right mr-5">
